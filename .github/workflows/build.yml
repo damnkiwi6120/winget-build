@@ -65,6 +65,3 @@ jobs:
           name: winget-cli
           path: src/x64/Release/AppInstallerCLI/*
           if-no-files-found: error
-        
-        
-          
