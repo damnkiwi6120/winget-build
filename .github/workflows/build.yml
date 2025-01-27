@@ -43,7 +43,7 @@ jobs:
           mv src\x64\Release\AppInstallerCLI\winget.exe src\x64\Release\AppInstallerCLI\wingetdev.exe
           Compress-Archive src\x64\Release\AppInstallerCLI\ .\wingetdev.zip
       - name: Delete that old release!
-        uses: actions/github-script@v4
+        uses: actions/github-script@v7
         continue-on-error: true
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
