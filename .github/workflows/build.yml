@@ -37,7 +37,7 @@ jobs:
         uses: ChristopheLav/windows-sdk-install@v1
         with:
           version-sdk: 22000
-          features: 'OptionId.DesktopCPPx64'
+          features: 'OptionId.SigningTools, OptionId.UWPManaged, OptionId.UWPCPP, OptionId.DesktopCPPx86, OptionId.DesktopCPPx64'
       - name: Build it!
         shell: cmd
         run: |
