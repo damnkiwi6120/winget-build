@@ -33,6 +33,10 @@ jobs:
         shell: cmd
         run: |
           "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvarsall.bat" x64 && msbuild -t:restore -m -p:RestorePackagesConfig=true -p:Configuration=Release src\AppInstallerCLI.sln
+      - name: Install the needed Windows SDK
+        uses: GuillaumeFalourd/setup-windows10-sdk-action@v2.4
+        with:
+          sdk-version: 22000
       - name: Build it!
         shell: cmd
         run: |
