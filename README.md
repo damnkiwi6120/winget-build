@@ -1,7 +1,7 @@
 # winget-build
 
 Original: [jedieaston/winget-build](https://github.com/jedieaston/winget-build)  
-This hard fork merges [PR#6](https://github.com/jedieaston/winget-build/pull/6), created by @cadwal, from that repo and adds my own changes.  
+This hard fork merges [PR#6, created by @cadwal](https://github.com/jedieaston/winget-build/pull/6), from that repo and adds my own changes.  
 
 ---
 
