@@ -1,3 +1,7 @@
+This branch is a trial of running on the runner Windows 2025, and it is currently abandoned due to no idea how to solve "UAP.props 10.0.22000 could not be located" proplem.
+
+---
+
 # winget-build
 
 Original: [jedieaston/winget-build](https://github.com/jedieaston/winget-build)  
