@@ -1,4 +1,7 @@
-This branch is a trial of running on the runner Windows 2025, and it is currently abandoned due to no idea how to solve "UAP.props 10.0.22000 could not be located" proplem.
+This branch is a trial of running on the runner Windows 2025, and it is currently abandoned due to no idea how to solve "UAP.props 10.0.22000 could not be located" proplem.  
+
+For a full log, the workflow URL is here:
+https://github.com/damnkiwi6120/winget-build/actions/runs/13083474874
 
 ---
 
