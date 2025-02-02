@@ -18,7 +18,7 @@ jobs:
     runs-on: windows-latest
     defaults:
       run:
-        shell: pwsh -command ". '& 'C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\Tools\Launch-VsDevShell.ps1' -Arch x64'; . '{0}'"
+        shell: pwsh -command ". 'C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\Tools\Launch-VsDevShell.ps1' -Arch amd64; . '{0}'"
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
