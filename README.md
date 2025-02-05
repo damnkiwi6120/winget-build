@@ -10,6 +10,8 @@ For future trials, if one knows how to deal with escaping special characters in 
 
 Until then, the only problem needs to be solved would only be failures of building.
 
+For a full log, the workflow URL is here: https://github.com/damnkiwi6120/winget-build/actions/runs/13126102506
+
 ---
 
 # winget-build
