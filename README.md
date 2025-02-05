@@ -1,3 +1,17 @@
+This branch tries to use `default.run.shell` to setup the whole environment, which would erase the need to call vcvarsall.bat every time it needs.
+
+However, during the trial, I have no idea how to handle special characters like spaces and quotes in cmd correctly.
+
+I bypass this problem by migrating to pwsh across all steps, which is an aggresive step.
+
+This fortunately bypass the problem, but it builds fail.
+
+For future trials, if one knows how to deal with escaping special characters in cmd, it might be a chance to decouple the problem from pwsh.
+
+Until then, the only problem needs to be solved would only be failures of building.
+
+---
+
 # winget-build
 
 Original: [jedieaston/winget-build](https://github.com/jedieaston/winget-build)
