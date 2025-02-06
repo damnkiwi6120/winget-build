@@ -62,12 +62,19 @@ jobs:
               sha: context.sha
             })
       - name: Create that new release!
-        uses: softprops/action-gh-release@v2
+        uses: actions/github-script@v7
         with:
-          body_path: release.txt
-          name: "wingetdev: ${{ github.run_number }}"
-          files: wingetdev.zip
-          tag_name: ${{ github.run_number }}
+          script: |
+            github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: `${context.runNumber}`,
+              name: `wingetdev: ${context.runNumber}`,
+              body: `"This is a automated build of winget, from commit [$(git rev-parse HEAD)](https://github.com/microsoft/winget-cli/tree/$(git rev-parse HEAD)). Unzip wingetdev.zip to use it!"`,
+            })      
+      - name: Post the artifact to the release
+        run:
+          gh release upload ${{ github.run_number }} wingetdev.zip
       
       - name: Post it!
         uses: actions/upload-artifact@v4
