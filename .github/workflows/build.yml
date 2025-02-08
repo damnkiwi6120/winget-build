@@ -70,7 +70,7 @@ jobs:
               repo: context.repo.repo,
               tag_name: `${context.runNumber}`,
               name: `wingetdev: ${context.runNumber}`,
-              body: `"This is a automated build of winget, from commit [$(git rev-parse HEAD)](https://github.com/microsoft/winget-cli/tree/$(git rev-parse HEAD)). Unzip wingetdev.zip to use it!"`,
+              body: "placeholder"
             })      
       - name: Post the artifact to the release
         env:
