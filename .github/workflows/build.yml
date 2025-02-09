@@ -71,10 +71,3 @@ jobs:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run:
           gh release upload ${{ github.run_number }} wingetdev.zip -R damnkiwi6120/winget-build
-      
-      - name: Post it!
-        uses: actions/upload-artifact@v4
-        with:
-          name: winget-cli
-          path: src/x64/Release/AppInstallerCLI/*
-          if-no-files-found: error
