@@ -76,7 +76,7 @@ jobs:
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run:
-          gh release upload ${{ github.run_number }} wingetdev.zip
+          gh release upload ${{ github.run_number }} wingetdev.zip -R damnkiwi6120/winget-build
       
       - name: Post it!
         uses: actions/upload-artifact@v4
