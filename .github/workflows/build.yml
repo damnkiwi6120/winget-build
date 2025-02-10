@@ -58,9 +58,9 @@ jobs:
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create ${{ github.run_number }} -t "wingetdev: ${{ github.run_number }}" -F release.txt -R damnkiwi6120/winget-build
+          gh release create ${{ github.run_number }} -t "wingetdev: ${{ github.run_number }}" -F release.txt -R ${{ github.repository }}
       - name: Post the artifact to the release
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run:
-          gh release upload ${{ github.run_number }} wingetdev.zip -R damnkiwi6120/winget-build
+          gh release upload ${{ github.run_number }} wingetdev.zip -R ${{ github.repository }}
