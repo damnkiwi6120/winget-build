@@ -52,14 +52,6 @@ jobs:
           Copy-Item src\x64\Release\WindowsPackageManager\WindowsPackageManager.dll src\x64\Release\AppInstallerCLI\WindowsPackageManager.dll
           Move-Item src\x64\Release\AppInstallerCLI\winget.exe src\x64\Release\AppInstallerCLI\wingetdev.exe
           Compress-Archive src\x64\Release\AppInstallerCLI\ .\wingetdev.zip
-      - name: Delete that old release!
-        uses: actions/github-script@v7
-        continue-on-error: true
-        with:
-          script: |
-            const { owner, repo } = context.repo
-            const { data: { id } } = await github.rest.repos.getLatestRelease({ owner, repo })
-            await github.rest.repos.deleteRelease({ owner, repo, release_id: id })
       - name: Create that new release!
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
