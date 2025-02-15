@@ -56,9 +56,34 @@ jobs:
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          gh release create ${{ github.run_number }} -t "wingetdev: ${{ github.run_number }}" -F release.txt -R ${{ github.repository }}
+          $ReleaseList = Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/winget-cli/releases' -HttpVersion 3.0
+          $null = $ReleaseList[0].tag_name -match 'v1\.(?<Minor>\d{1,})\.(?<Build>\d{1,})'
+          $Minor = [Int64]$Matches.Minor
+          $Build = [Int64]$Matches.Build
+          $Prerelease = $ReleaseList[0].prerelease
+          for ($i = 1; $i -lt $ReleaseList.Length; $i++ ) {
+          	if ($Prerelease -ne $ReleaseList[$i].prerelease) {
+          		$null = $ReleaseList[$i].tag_name -match 'v1\.(?<Minor>\d{1,})\.(?<Build>\d{1,})'
+          		if ($Minor -gt [Int64]$Matches.Minor) {
+          			Break
+          		}
+          		elseif ($Minor -eq [Int64]$Matches.Minor) {
+          			if ($Build -lt [Int64]$Matches.Build) {
+          				$Build = [Int64]$Matches.Build
+          			}
+          			Break
+          		}
+          		else {
+          			$Minor = [Int64]$Matches.Minor
+          			$Build = [Int64]$Matches.Build
+          			Break
+          		}
+          	}
+          }
+          Write-Output "VTAG=v1.$Minor.$Build+" >> $GITHUB_ENV
+          gh release create "v1.$Minor.$Build+" -t "v1.$Minor.$Build+$(git rev-parse HEAD)" -F release.txt -R ${{ github.repository }}
       - name: Post the artifact to the release
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run:
-          gh release upload ${{ github.run_number }} wingetdev.zip -R ${{ github.repository }}
+          gh release upload $VTAG wingetdev.zip -R ${{ github.repository }}
