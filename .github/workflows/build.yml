@@ -83,7 +83,7 @@ jobs:
           		}
           	}
           }
-          Write-Output "VTAG=$TagName" >> $GITHUB_ENV
+          Write-Output "TagName=$TagName" >> $GITHUB_ENV
           gh release create "$TagName+$(git rev-parse --short=7 HEAD)" -t "$TagName+$(git rev-parse HEAD)" -F release.txt -R ${{ github.repository }}
       - name: Post the artifact to the release
         env:
