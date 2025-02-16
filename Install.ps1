@@ -28,10 +28,10 @@ function Update-Environment {
 
 mkdir ~\.bin\wingetdev -ErrorAction SilentlyContinue
 
-iwr https://github.com/damnkiwi6120/winget-build/releases/latest/download/wingetdev.zip -OutFile $env:TEMP\wingetdev.zip
+Invoke-WebRequest https://github.com/damnkiwi6120/winget-build/releases/latest/download/wingetdev.zip -OutFile $env:TEMP\wingetdev.zip
 Expand-Archive $env:TEMP\wingetdev.zip $env:TEMP\wingetdev -Force
-mv $env:TEMP\wingetdev\AppInstallerCLI\* ~\.bin\wingetdev\ -Force
-rm $env:TEMP\wingetdev* -Force -Recurse
+Move-Item $env:TEMP\wingetdev\AppInstallerCLI\* ~\.bin\wingetdev\ -Force
+Remove-Item $env:TEMP\wingetdev* -Force -Recurse
 
 Write-Host "wingetdev is up-to-date!" -ForegroundColor Green
 if (-Not (Get-Command 'wingetdev' -ErrorAction SilentlyContinue)) {
