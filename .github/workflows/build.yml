@@ -83,10 +83,10 @@ jobs:
           		}
           	}
           }
-          Write-Output "TagName=$TagName" >> $GITHUB_ENV
+          Write-Output "TagName=$TagName" >> $Env:GITHUB_ENV
           gh release create "$TagName+$(git rev-parse --short=7 HEAD)" -t "$TagName+$(git rev-parse HEAD)" -F release.txt -R ${{ github.repository }}
       - name: Post the artifact to the release
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run:
-          gh release upload "$TagName+$(git rev-parse --short=7 HEAD)" wingetdev.zip -R ${{ github.repository }}
+          gh release upload "$Env:TagName+$(git rev-parse --short=7 HEAD)" wingetdev.zip -R ${{ github.repository }}
