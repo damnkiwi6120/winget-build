@@ -56,7 +56,7 @@ jobs:
         env:
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
         run: |
-          $ReleaseList = Invoke-RestMethod -Uri 'https://api.github.com/repos/microsoft/winget-cli/releases' -HttpVersion 3.0
+          $ReleaseList = gh api -H "Accept: application/vnd.github+json" -H "X-GitHub-Api-Version: 2022-11-28" repos/microsoft/winget-cli/releases
           $TagName = $ReleaseList[0].tag_name
           $null = $TagName -match 'v1\.(?<Minor>\d{1,})\.(?<Build>\d{1,})'
           $Minor = [Int64]$Matches.Minor
